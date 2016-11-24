@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 
 	//robot.runAsync(true);
 	robot.runAsync(false);
-
+	/*
 	char input;
 	cout << "Hello and Welcome, press 'w' or 'W' for the Hello World!\n";
 	cin >> input;
@@ -51,10 +51,40 @@ int main(int argc, char **argv)
 		Hellow w;
 		w.perform_test(robot);
 	}
+	*/
+	// turn on the motors, turn off amigobot sounds
+	robot.enableMotors();
+	robot.comInt(ArCommands::SOUNDTOG, 0);
 
+	// TODO: Conditionals Here
+	string fromSwipe;
+	//cout << "Hello and Welcome, send me an upswipe!\n";
+	cin >> fromSwipe;
+	if (!fromSwipe.compare("manual")){
+		robot.setVel(400);	// robot moves forward at 350 mm/s
+		bool stop = false;
+		int sonarMinRange = 700;	// should stop when encounter a wall or something at 500mm
+		int numSonar = robot.getNumSonar();
+		// Keep going forward until one of the sonars picks up something at the sonarMinRange
+		while (!stop){
+			for (int i = 0; i < numSonar; i++){
+				if (robot.getSonarRange(i) <= sonarMinRange){
+					robot.setVel(0);
+					stop = true;
+				}
 
-	// wait for robot task loop to end before exiting the program
-	robot.waitForRunExit();
+			}
+		}
+		robot.setRotVel(90);  // robot rotates at 120deg/s
+		ArUtil::sleep(2000);  // go to sleep in 2 seconds
+		robot.setRotVel(0);
+
+		// wait for robot task loop to end before exiting the program
+		robot.waitForRunExit();
+
+	}
+
+	
 
 	Aria::exit(0);
 	return 0;
