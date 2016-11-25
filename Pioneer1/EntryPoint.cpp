@@ -56,35 +56,74 @@ int main(int argc, char **argv)
 	robot.enableMotors();
 	robot.comInt(ArCommands::SOUNDTOG, 0);
 
-	// TODO: Conditionals Here
-	string fromSwipe;
-	//cout << "Hello and Welcome, send me an upswipe!\n";
-	cin >> fromSwipe;
-	if (!fromSwipe.compare("manual")){
-		robot.setVel(400);	// robot moves forward at 350 mm/s
-		bool stop = false;
-		int sonarMinRange = 700;	// should stop when encounter a wall or something at 500mm
-		int numSonar = robot.getNumSonar();
-		// Keep going forward until one of the sonars picks up something at the sonarMinRange
-		while (!stop){
-			for (int i = 0; i < numSonar; i++){
-				if (robot.getSonarRange(i) <= sonarMinRange){
-					robot.setVel(0);
-					stop = true;
+	while(1){
+		// TODO: Conditionals Here
+		string fromSwipe;
+		//cout << "Hello and Welcome, send me an upswipe!\n";
+		cin >> fromSwipe;
+		if (!fromSwipe.compare("up")){
+			robot.setVel(400);	// robot moves forward at 350 mm/s
+			bool stop = false;
+			int sonarMinRange = 700;	// should stop when encounter a wall or something at 500mm
+			int numSonar = robot.getNumSonar();
+			// Keep going forward until one of the sonars picks up something at the sonarMinRange
+			//numSonar /= 2; // only used in Mobilesim to mimic the use of only the front sonar array
+			while (!stop){
+				for (int i = 0; i < numSonar; i++){
+					if (robot.getSonarRange(i) <= sonarMinRange){
+						robot.setVel(0);
+						stop = true;
+					}
+
 				}
-
 			}
+			//robot.setRotVel(0); // stop if runs at obstacle
+			cout << "It seems you've hit something!";
 		}
-		robot.setRotVel(90);  // robot rotates at 120deg/s
-		ArUtil::sleep(2000);  // go to sleep in 2 seconds
-		robot.setRotVel(0);
+		else if (!fromSwipe.compare("down")){
+			//ArUtil::sleep(2000);  // go to sleep in 2 seconds
+			robot.setVel(0);
+		}
+		else if (!fromSwipe.compare("left")){
+			// this 90 is counter-clockwise
+			robot.setRotVel(45);  // robot rotates at 45deg/s
+			ArUtil::sleep(1000);  // go to sleep in 1 second
+			robot.setRotVel(0);
+		}
+		else if (!fromSwipe.compare("right")){
+			// this 90 is counter-clockwise
+			robot.setRotVel(-45);  // robot rotates at 45deg/s
+			ArUtil::sleep(1000);  // go to sleep in 1 second
+			robot.setRotVel(0);
+		}
+		else {
+			cout << "I have no idea what you want";
+		}
+		/*
+		if (!fromSwipe.compare("manual")){
+			robot.setVel(400);	// robot moves forward at 350 mm/s
+			bool stop = false;
+			int sonarMinRange = 700;	// should stop when encounter a wall or something at 500mm
+			int numSonar = robot.getNumSonar();
+			// Keep going forward until one of the sonars picks up something at the sonarMinRange
+			while (!stop){
+				for (int i = 0; i < numSonar; i++){
+					if (robot.getSonarRange(i) <= sonarMinRange){
+						robot.setVel(0);
+						stop = true;
+					}
 
-		// wait for robot task loop to end before exiting the program
-		robot.waitForRunExit();
-
+				}
+			}
+			// this 90 is counter-clockwise
+			robot.setRotVel(90);  // robot rotates at 120deg/s
+			ArUtil::sleep(2000);  // go to sleep in 2 seconds
+			robot.setRotVel(0);			
+		}
+		*/
 	}
-
-	
+	// wait for robot task loop to end before exiting the program
+	robot.waitForRunExit();
 
 	Aria::exit(0);
 	return 0;
