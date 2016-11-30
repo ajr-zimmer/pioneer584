@@ -64,7 +64,7 @@ int main(int argc, char **argv)
 		if (!fromSwipe.compare("up")){
 			robot.setVel(400);	// robot moves forward at 350 mm/s
 			bool stop = false;
-			int sonarMinRange = 700;	// should stop when encounter a wall or something at 500mm
+			int sonarMinRange = 800;	// should stop when encounter a wall or something at 500mm
 			int numSonar = robot.getNumSonar();
 			// Keep going forward until one of the sonars picks up something at the sonarMinRange
 			//numSonar /= 2; // only used in Mobilesim to mimic the use of only the front sonar array
@@ -73,54 +73,36 @@ int main(int argc, char **argv)
 					if (robot.getSonarRange(i) <= sonarMinRange){
 						robot.setVel(0);
 						stop = true;
+						cout << "It seems you've hit something!";
 					}
-
+				}
+				cin >> fromSwipe; // this line seems to mess it all up. Causes the sonar array to be ignored
+				if (fromSwipe.compare("up")){ // anything but up
+					robot.setVel(0);
+					stop = true;
+					cout << "Stopping robot...";
 				}
 			}
-			//robot.setRotVel(0); // stop if runs at obstacle
-			cout << "It seems you've hit something!";
 		}
 		else if (!fromSwipe.compare("down")){
-			//ArUtil::sleep(2000);  // go to sleep in 2 seconds
+			//ArUtil::sleep(2000);  // go to sleep for 2 seconds
 			robot.setVel(0);
 		}
 		else if (!fromSwipe.compare("left")){
-			// this 90 is counter-clockwise
+			// this is counter-clockwise
 			robot.setRotVel(45);  // robot rotates at 45deg/s
-			ArUtil::sleep(1000);  // go to sleep in 1 second
+			ArUtil::sleep(1000);  // go to sleep for 1 second
 			robot.setRotVel(0);
 		}
 		else if (!fromSwipe.compare("right")){
-			// this 90 is counter-clockwise
+			// this is clockwise
 			robot.setRotVel(-45);  // robot rotates at 45deg/s
-			ArUtil::sleep(1000);  // go to sleep in 1 second
+			ArUtil::sleep(1000);  // go to sleep for 1 second
 			robot.setRotVel(0);
 		}
 		else {
 			cout << "I have no idea what you want";
 		}
-		/*
-		if (!fromSwipe.compare("manual")){
-			robot.setVel(400);	// robot moves forward at 350 mm/s
-			bool stop = false;
-			int sonarMinRange = 700;	// should stop when encounter a wall or something at 500mm
-			int numSonar = robot.getNumSonar();
-			// Keep going forward until one of the sonars picks up something at the sonarMinRange
-			while (!stop){
-				for (int i = 0; i < numSonar; i++){
-					if (robot.getSonarRange(i) <= sonarMinRange){
-						robot.setVel(0);
-						stop = true;
-					}
-
-				}
-			}
-			// this 90 is counter-clockwise
-			robot.setRotVel(90);  // robot rotates at 120deg/s
-			ArUtil::sleep(2000);  // go to sleep in 2 seconds
-			robot.setRotVel(0);			
-		}
-		*/
 	}
 	// wait for robot task loop to end before exiting the program
 	robot.waitForRunExit();
