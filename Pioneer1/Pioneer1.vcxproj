@@ -70,7 +70,7 @@
     <IncludePath>C:\Program Files\MobileRobots\Aria\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files\MobileRobots\Aria\lib64;$(LibraryPath)</LibraryPath>
     <SourcePath>C:\Program Files\MobileRobots\Aria\src;$(SourcePath)</SourcePath>
-    <OutDir>.\bin\</OutDir>
+    <OutDir>..\..\ARIA 2.9.1 %2832-bit%29\bin</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ExecutablePath>C:\Program Files\MobileRobots\Aria\bin64;$(ExecutablePath)</ExecutablePath>
@@ -78,16 +78,19 @@
     <LibraryPath>C:\Program Files\MobileRobots\Aria\lib64;$(LibraryPath)</LibraryPath>
     <SourcePath>C:\Program Files\MobileRobots\Aria\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\ARIA 2.9.1 %2832-bit%29\bin</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files\MobileRobots\Aria\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>A:\Desktop\CPSC584 Project\ARIA 2.9.1 %2832-bit%29\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Program Files\MobileRobots\Aria\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>A:\Desktop\CPSC584 Project\ARIA 2.9.1 %2832-bit%29\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>AriaDebugVC12.lib;winmm.lib;advapi32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
@@ -112,12 +115,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>A:\Desktop\CPSC584 Project\ARIA 2.9.1 %2832-bit%29\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>AriaVC12.lib;winmm.lib;advapi32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>A:\Desktop\CPSC584 Project\ARIA 2.9.1 %2832-bit%29\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

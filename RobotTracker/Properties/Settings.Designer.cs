@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RemoteController.Properties
+namespace RobotTracker.Properties
 {
 
 
