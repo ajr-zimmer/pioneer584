@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 			}
 			else if (new_string == "down"){
 				robot.setVel(0);
-				cout << "Stopping robot...";
+				cout << "Stopping robot...\n";
 			}
 			else if (new_string == "left"){
 				// this is counter-clockwise
@@ -117,7 +117,7 @@ int main(int argc, char **argv)
 					//register the stopping as a down command, so that the user cannot push forward
 					new_string = "down";
 					stop = true;
-					cout << "It seems you've hit something! \n";
+					cout << "It seems you've hit something!\n";
 					break;
 				}
 			}
