@@ -144,6 +144,7 @@
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="Hellow.cpp" />
     <ClCompile Include="ManualControl.cpp" />
+    <ClCompile Include="Tour.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
