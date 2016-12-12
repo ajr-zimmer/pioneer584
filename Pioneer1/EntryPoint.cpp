@@ -117,7 +117,7 @@ int main(int argc, char **argv)
 					//register the stopping as a down command, so that the user cannot push forward
 					new_string = "down";
 					stop = true;
-					cout << "It seems you've hit something!";
+					cout << "It seems you've hit something! \n";
 					break;
 				}
 			}

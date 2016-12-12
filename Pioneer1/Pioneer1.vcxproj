@@ -70,7 +70,7 @@
     <IncludePath>C:\Program Files\MobileRobots\Aria\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files\MobileRobots\Aria\lib64;$(LibraryPath)</LibraryPath>
     <SourcePath>C:\Program Files\MobileRobots\Aria\src;$(SourcePath)</SourcePath>
-    <OutDir>..\..\ARIA 2.9.1 %2832-bit%29\bin</OutDir>
+    <OutDir>..\..\Aria\bin</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ExecutablePath>C:\Program Files\MobileRobots\Aria\bin64;$(ExecutablePath)</ExecutablePath>
@@ -86,11 +86,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>A:\Desktop\CPSC584 Project\ARIA 2.9.1 %2832-bit%29\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sumpa\Desktop\584\Aria\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>A:\Desktop\CPSC584 Project\ARIA 2.9.1 %2832-bit%29\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\sumpa\Desktop\584\Aria\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>AriaDebugVC12.lib;winmm.lib;advapi32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
