@@ -52,9 +52,11 @@ int main(int argc, char **argv)
 	std::condition_variable cv;
 	std::string new_string;
 	bool error = false;
+	bool blocked = false;
 
 	auto io_thread = std::thread([&]{
 		std::string s;
+		std::cout << std::boolalpha;
 		while (!error && std::getline(std::cin, s, '\n'))
 		{
 			auto lock = std::unique_lock<std::mutex>(m);
@@ -80,6 +82,9 @@ int main(int argc, char **argv)
 				robot.setRotVel(-45);  // robot rotates at 45deg/s
 				ArUtil::sleep(1000);  // go to sleep for 1 second
 				robot.setRotVel(0);
+			}
+			else if (new_string == "getSonar"){
+				cout << blocked << '\n';
 			}
 			lock.unlock();
 			cv.notify_all();
@@ -111,12 +116,14 @@ int main(int argc, char **argv)
 		// Keep going forward until one of the sonars picks up something at the sonarMinRange
 		//numSonar /= 2; // only used in Mobilesim to mimic the use of only the front sonar array
 		while (!stop){
+			blocked = false;
 			for (int i = 0; i < numSonar; i++){
 				if (robot.getSonarRange(i) <= sonarMinRange){
 					robot.setVel(0);
 					//register the stopping as a down command, so that the user cannot push forward
 					new_string = "down";
 					stop = true;
+					blocked = true;
 					cout << "It seems you've hit something!\n";
 					break;
 				}
@@ -135,7 +142,7 @@ int main(int argc, char **argv)
 		std::cout.flush();
 		*/
 	}
-	io_thread.join();
+	// io_thread.join();  // <-- this line breaks the robot mid operation
 	// wait for robot task loop to end before exiting the program
 	//robot.waitForRunExit();
 	Aria::exit(0);
